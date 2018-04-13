@@ -1,7 +1,9 @@
 <?php
     namespace App\Http\Controllers\Student;
+
     use App\Http\Controllers\Controller;
     use Illuminate\Support\Facades\DB;
+    use App\Student;
 
     class StudentController extends Controller{
         /*
@@ -80,5 +82,31 @@
 
             //聚合函数  查询构建器还提供了多个聚合方法，如count, max, min, avg 和 sum
             /*$sum = DB::table('student') -> sum('age');*/
+        }
+
+        /*
+         * 使用 Eloquent 模型进行数据库操作
+         */
+        public function orm1(){
+            //获取模型
+            /*$list = Student::all();
+            dd($list);*/
+
+            //获取单个模型/聚合结果  当然，除了从给定表中获取所有记录之外，还可以使用 find 和 first 获取单个记录。
+            /*$info = Student::find(1077);
+            var_dump($info);*/
+
+            //Not Found 异常  有时候你可能想要在模型找不到的时候抛出异常，这在路由或控制器中非常有用
+            /*$info = Student::findOrFail(77);
+            var_dump($info);*/
+
+            //组块结果集  如果你需要处理数据量很大的 Eloquent 结果集，可以使用 chunk 方法。
+            /*Student::chunk(2,function($students){
+                var_dump($students);
+            });*/
+
+            //获取聚合结果  可以使用查询构建器提供的聚合方法，例如 count、sum、max，以及其它查询构建器提供的聚合函数。
+            /*$max = Student::where('id','>',100) ->  max('age');
+            var_dump($max);*/
         }
     }

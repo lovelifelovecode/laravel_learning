@@ -95,5 +95,5 @@ Route::get('db1','Student\StudentController@db1');
 Route::get('query1','Student\StudentController@query1');
 
 //数据库连接 使用 Eloquent 模型进行数据库操作
-Route::get('orm1','Student@orm1');
+Route::get('orm1','Student\StudentController@orm1');
 
