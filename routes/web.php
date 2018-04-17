@@ -97,3 +97,32 @@ Route::get('query1','Student\StudentController@query1');
 //数据库连接 使用 Eloquent 模型进行数据库操作
 Route::get('orm1','Student\StudentController@orm1');
 
+//Blade 模板引擎 使用 Eloquent 模型进行数据库操作
+Route::any('blade','Student\StudentController@blade');
+
+//Controller之Request
+Route::any('request1','Student\StudentController@request1');
+
+//Session
+Route::any('session1','Student\StudentController@session1');
+
+//Controller之Response
+Route::any('response1','Student\StudentController@response1');
+
+//中间件
+Route::any('activity0',['uses'=> 'Student\StudentController@activity0']);
+Route::group(['middleware'=> ['activity']],function(){
+    Route::any('activity1',['uses'=> 'Student\StudentController@activity1']);
+    Route::any('activity2',['uses'=> 'Student\StudentController@activity2']);
+});
+
+
+//表单案例
+Route::group(['middleware'=>['web']],function(){
+    Route::any('student/index',['uses'=>'Student\StudentController@index']);
+    Route::any('student/create',['uses'=>'Student\StudentController@create']);
+    Route::any('student/save',['uses'=>'Student\StudentController@save']);
+});
+Route::any('student/update/{id}',['uses'=>'Student\StudentController@update']);
+Route::any('student/detail/{id}',['uses'=>'Student\StudentController@detail']);
+Route::any('student/delete/{id}',['uses'=>'Student\StudentController@delete']);
